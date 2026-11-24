@@ -1,9 +1,11 @@
+
 <template>
   <q-page padding>
     <div class="text-h4 q-mb-md">
       Version Control + Docker Demo (Quasar)
     </div>
 
+    <!-- Git Workflow -->
     <q-card class="q-mb-md">
       <q-card-section>
         <div class="text-h6">Git Workflow (ตัวอย่างขั้นตอนทำงาน)</div>
@@ -21,7 +23,8 @@
       </q-card-section>
     </q-card>
 
-    <q-card>
+    <!-- Docker Concepts -->
+    <q-card class="q-mb-md">
       <q-card-section>
         <div class="text-h6">Docker Concepts (สรุปสั้น ๆ)</div>
         <q-list bordered separator class="q-mt-sm">
@@ -29,6 +32,28 @@
             <q-item-section>
               <q-item-label>{{ item.title }}</q-item-label>
               <q-item-label caption>{{ item.detail }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-card-section>
+    </q-card>
+
+    <!-- Docker Quick Reference -->
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">Docker Quick Reference</div>
+        <q-list bordered separator class="q-mt-sm">
+          <q-item
+            v-for="(item, index) in dockerCommands"
+            :key="index"
+          >
+            <q-item-section>
+              <q-item-label class="text-weight-bold">
+                {{ item.command }}
+              </q-item-label>
+              <q-item-label caption>
+                {{ item.detail }}
+              </q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
@@ -77,6 +102,25 @@ const dockerItems = [
   {
     title: 'Network',
     detail: 'ให้บริการใน Docker ติดต่อกันได้ เช่น Nginx ส่งต่อคำขอไปยัง Express',
+  },
+]
+
+const dockerCommands = [
+  {
+    command: 'docker images',
+    detail: 'ใช้ตรวจสอบรายการ Docker Images ที่มีอยู่ในเครื่อง',
+  },
+  {
+    command: 'docker ps',
+    detail: 'ใช้ตรวจสอบ Container ที่กำลังทำงานอยู่',
+  },
+  {
+    command: 'docker stop <container_name>',
+    detail: 'ใช้หยุดการทำงานของ Container ที่ระบุ',
+  },
+  {
+    command: 'docker compose down',
+    detail: 'ใช้หยุดและลบ Container และ Network ที่สร้างจาก Docker Compose',
   },
 ]
 </script>
